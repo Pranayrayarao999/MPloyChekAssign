@@ -54,7 +54,7 @@ router.post('/Login',async (req,res) => {
 //SIGNUP (http://localhost:3000/Api/SignUp)
 router.post('/SignUp',async (req,res) => {
 
-    let {userId,password,role} = req.body;
+    // let {userId,password,role} = req.body;
     try{
         //checks whether the user is having same userid or not 
         const user1 = await User.findOne({userId: req.body.userId});
@@ -118,22 +118,33 @@ router.get('/Admin',async(request,response) => {
     //response.send({msg:"Heyy Router"})
 })
 
-//DELETE (http://localhost:3000/Api/Delete/:id)
+//DELETE (http://localhost:3000/Api/Delete/:userId)
 // ONLY ADMIN CAN DELETE THE DATA
-//NotWorking
-router.delete('/Delete/:id',async(request,response) => {
-    try{
-        const id = request.params.id;
-        const dltedUsr = await User.deleteOne({_id : id});   
+router.delete('/Delete/:userId',async(req,res) => {
+    try{ 
+        const userId1 = req.params.userId;
+        const dltedUsr = await User.deleteOne({userId : userId1});
 
-        response.status(200).json.send(dltedUsr)({
+        return res.json(dltedUsr)({
             success: true,
             message:"USER DELETED SUCCESSFULLY"
         });
     }
     catch(err){
         console.log(err);
-        return response.sendStatus(500).send("Internal server error");
+        return res.sendStatus(500).send("Internal server error");
+    }
+})
+
+//Get everyuser by id  (http://localhost:3000/Api/Usr/:userId)
+router.get('/Usr/:userId', async (request,response) => {
+    const userId = request.params.userId;
+    const dt12 = await User.findById(userId);
+    try{
+        response.send(dt12);
+    }
+    catch(err){
+        response.sendStatus(500).send(err);
     }
 })
 
