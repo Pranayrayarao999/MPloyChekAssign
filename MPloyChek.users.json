@@ -1,0 +1,67 @@
+[{
+  "_id": {
+    "$oid": "67e1b1026506a23b96d5ebf1"
+  },
+  "userId": "Pranay45",
+  "password": "Pranay4545",
+  "role": "GeneralUser"
+},
+{
+  "_id": {
+    "$oid": "67e3ad00500585db9c1d5f63"
+  },
+  "userId": "P999",
+  "password": "P999",
+  "role": "Admin",
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "67e4272031b500fd2b47140f"
+  },
+  "userId": "P888",
+  "password": "P888",
+  "role": "Admin",
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "67e441a2e8db1dc6a0909f21"
+  },
+  "userId": "P777",
+  "password": "P777",
+  "role": "GeneralUser",
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "67e5760c98f512bf25a36c48"
+  },
+  "userId": "Raj123",
+  "password": "Raj123",
+  "role": "GeneralUser"
+},
+{
+  "_id": {
+    "$oid": "67e5763e98f512bf25a36c49"
+  },
+  "userId": "DHDHDHDH",
+  "password": "DHDHDHDH",
+  "role": "GeneralUser"
+},
+{
+  "_id": {
+    "$oid": "67e5766a98f512bf25a36c4a"
+  },
+  "userId": "DH1",
+  "password": "DH1",
+  "role": "GeneralUser"
+},
+{
+  "_id": {
+    "$oid": "67e5767c98f512bf25a36c4b"
+  },
+  "userId": "DH2",
+  "password": "DH2",
+  "role": "GeneralUser"
+}]
