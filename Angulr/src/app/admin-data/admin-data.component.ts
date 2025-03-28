@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { AdminservceService } from '../Services/AdminServceDataAll/adminservce.service';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-admin-data',
@@ -9,10 +9,14 @@ import { Router } from '@angular/router';
 })
 export class AdminDataComponent {
 
-  constructor(private adminalldata: AdminservceService, private router: Router ){}
   alldata:any;
+  userId: string;
+  getsngledata:any;
+
+  constructor(private adminalldata: AdminservceService, private router: Router, private activatedRoute: ActivatedRoute ){}
 
   ngOnInit():void{
+    // RETRIEVING ALL DATA
     this.adminalldata.AdminAcc().subscribe(result => {
       this.alldata = result; 
       console.log(result);
@@ -34,7 +38,7 @@ export class AdminDataComponent {
   }
 
   //id:number;
-  Delete(userId:string){
+  Delete(userId){
     const confirmation = window.confirm('Are you sure you want to delete this item?');
     if (confirmation) {
       this.adminalldata.DeleteByAdmin(userId).subscribe(

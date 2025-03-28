@@ -16,6 +16,13 @@ export class AdminservceService {
     return this.Http.get<any>(this.AdminDataAllApi);
   }
 
+  //Get every single user by userid
+  Getsingledatabyid:string = "http://localhost:3000/Api/Usr/";
+
+  GtSingleData(userId:string){
+    return this.Http.get<any>(`${this.Getsingledatabyid}${userId}`);
+  }
+
   //Delete Data By Admin
   AdminMangeApi:string = "http://localhost:3000/Api/Delete/";
 

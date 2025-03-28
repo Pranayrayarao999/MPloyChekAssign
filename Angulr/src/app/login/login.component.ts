@@ -28,8 +28,8 @@ export class LoginComponent {
     console.log(this.logindata);
     this.logsignservce.logincheck(this.logindata).subscribe(
       success =>{
-        // Check if token is available
-        if(success && success.body.token && success.body) {
+        //Check if success and body exist and if token is available
+        if(success?.body?.token) {
           // json-stringify : converts json objects to strings
           window.localStorage.setItem('token',success.body.token);
           alert("LOGGEDIN SUCCESSFULLY");
@@ -38,38 +38,50 @@ export class LoginComponent {
 
           //WE NEED TO CHANGE SHOW DATA OF USER TO USER, ALL DATAS TO ONLY ADMIN
           const role = success.body.user.role;
+          const userId = success.body.user.userId;
           if(role === "Admin"){
             setTimeout(() => {
-              alert("Welcome Admin : "+success.body.user.userId);
+              alert("Welcome Admin : "+userId);
             }, 3000); // Wait for 1 seconds (1000 milliseconds)
           this.router.navigateByUrl('Admin');
           }
           else if(role === "GeneralUser"){
             setTimeout(() => {
-              alert("Welcome User : "+success.body.user.userId);
+              alert("Welcome User : "+userId);
             }, 3000); // Wait for 1 seconds (1000 milliseconds)
           this.router.navigateByUrl('GUser');
-          } 
-        }
-        else if(!success && !success.body.token && !success.body.user){
-          alert("Login failed. Please try again");
-          return null; // Stop further execution
+          }
+          else{
+            alert("Unknown Role");
+            this.router.navigateByUrl('Login');
+          }
         }
         else{
-          alert("Try again after Some time...!!!");
-          return "Try again after Some time...!!!";
+          alert("LOGIN FAILED....CHECK THE CREDENTIALS");
+          console.log("Login Failed....CHECK THE CREDENTIALS");
+          this.router.navigateByUrl('Login');
+          //return null; // Stop further execution
         }
+        
+        // else{
+        //   alert("Try again after Some time...!!!");
+        //   return "Try again after Some time...!!!";
+        // }
+
         // json-stringify : converts json objects to strings
         // window.localStorage.setItem('token',JSON.stringify(success));
         // alert("LOGGEDIN SUCCESSFULLY");
-        return null;
+        //return null;
       },
       error => {
         console.log(error);
-        alert("LOGIN FAILED....CHECK THE CREDENTIALS");
+        alert("Error Occured Try again after Some time...!!!");
         this.router.navigateByUrl('Login');
         this.LoginForm.reset();  
       }
-    )
-}
+    )};
+
+
+
+
 }
